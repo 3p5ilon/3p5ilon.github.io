@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mithrilai.xyz"),
   title: {
-    default: "Mithril AI",
-    template: `%s | Mithril AI`,
+    default: "HackSpace",
+    template: `%s | HackSpace`,
   },
   description: "Open Science AI Research Lab",
   openGraph: {
     images: "/opengraph.png",
-    title: "Mithril AI",
+    title: "HackSpace",
     description: "Open Science AI Research Lab",
     url: "https://mithrilai.xyz",
     siteName: "Mithril AI",

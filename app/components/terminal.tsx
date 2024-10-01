@@ -1,11 +1,10 @@
 "use client";
-
 import React, { useState, useRef, useEffect } from "react";
 
 const Terminal: React.FC = () => {
   const [input, setInput] = useState<string>("");
   const [output, setOutput] = useState<string[]>([
-    "Open Science AI Research Lab.",
+    "A worldwide community of high school hackers. By the students, for the students.",
     "Type help to get started.",
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,7 +25,6 @@ const Terminal: React.FC = () => {
 
   const processCommand = (cmd: string): void => {
     setOutput((prev) => [...prev, `guest:cnvctn ~ $ ${cmd}`]);
-
     switch (cmd.toLowerCase()) {
       case "help":
         setOutput((prev) => [
@@ -54,15 +52,15 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-[#87FF5F] p-4 font-mono text-sm h-screen overflow-y-auto">
-      <pre className="text-[#9BA0DF] mb-4">
+    <div className="bg-black text-[#87FF5F] font-mono text-sm h-screen overflow-y-auto">
+      <pre className="text-white mb-4">
         {`
-    __  ____ __  __         _ __   
-   /  |/  (_) /_/ /_  _____(_) /   
-  / /|_/ / / __/ __ \\/ ___/ / /    
- / /  / / / /_/ / / / /  / / /     
-/_/  /_/_/\\__/_/ /_/_/  /_/_/         
-                                   
+    __  __           __   _____                     
+   / / / /___ ______/ /__/ ___/____  ____ _________ 
+  / /_/ / __ \`/ ___/ //_/\\__ \\/ __ \\/ __ \`/ ___/ _ \\
+ / __  / /_/ / /__/ ,<  ___/ / /_/ / /_/ / /__/  __/
+/_/ /_/\\__,_/\\___/_/|_|/____/ .___/\\__,_/\\___/\\___/ 
+                           /_/                      
 `}
       </pre>
       {output.map((line, index) => (
@@ -76,14 +74,14 @@ const Terminal: React.FC = () => {
       <form onSubmit={handleSubmit} className="flex mt-4 items-center">
         <span className="mr-2">guest:cnvctn ~ $</span>
         <div className="relative flex-grow">
-         <input
-  ref={inputRef}
-  type="text"
-  value={input}
-  onChange={handleInputChange}
-  className="bg-transparent w-full outline-none pl-3 caret-transparent" 
-  autoFocus
-/>
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={handleInputChange}
+            className="bg-transparent w-full outline-none pl-3 caret-transparent"
+            autoFocus
+          />
           <div className="absolute left-0 top-0 bottom-0 w-2 bg-[#87FF5F] animate-pulse" />
         </div>
       </form>
