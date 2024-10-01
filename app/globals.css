@@ -1,17 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@layer base {
+  :root {
+    --background: #000;
+    --foreground: #fff;
+  }
 
-:root {
-  --background: #000;
-  --foreground: #fff;
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Monaco, Consolas, "Lucida Console", monospace;
-}
-

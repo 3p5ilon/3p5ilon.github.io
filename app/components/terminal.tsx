@@ -1,12 +1,10 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { Logo, Description, processCommand } from "./content";
 
 const Terminal: React.FC = () => {
   const [input, setInput] = useState<string>("");
-  const [output, setOutput] = useState<string[]>([
-    "A worldwide community of high school hackers. By the students, for the students.",
-    "Type help to get started.",
-  ]);
+  const [output, setOutput] = useState<string[]>(Description);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -19,50 +17,13 @@ const Terminal: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    processCommand(input);
+    processCommand(input, setOutput);
     setInput("");
   };
 
-  const processCommand = (cmd: string): void => {
-    setOutput((prev) => [...prev, `guest:cnvctn ~ $ ${cmd}`]);
-    switch (cmd.toLowerCase()) {
-      case "help":
-        setOutput((prev) => [
-          ...prev,
-          "help             list all commands (you're looking at it)",
-          "about            learn about Conviction",
-          "clear            clear the terminal",
-        ]);
-        break;
-      case "about":
-        setOutput((prev) => [
-          ...prev,
-          "We are an open-source AI research and deployment company.",
-          "Our mission is to democratize AI by becoming the Linux of AI,",
-          "making everything—from model weights to data pipelines—fully",
-          "open and accessible to everyone.",
-        ]);
-        break;
-      case "clear":
-        setOutput([]);
-        break;
-      default:
-        setOutput((prev) => [...prev, `Command not found: ${cmd}`]);
-    }
-  };
-
   return (
-    <div className="bg-black text-[#87FF5F] font-mono text-sm h-screen overflow-y-auto">
-      <pre className="text-white mb-4">
-        {`
-    __  __           __   _____                     
-   / / / /___ ______/ /__/ ___/____  ____ _________ 
-  / /_/ / __ \`/ ___/ //_/\\__ \\/ __ \\/ __ \`/ ___/ _ \\
- / __  / /_/ / /__/ ,<  ___/ / /_/ / /_/ / /__/  __/
-/_/ /_/\\__,_/\\___/_/|_|/____/ .___/\\__,_/\\___/\\___/ 
-                           /_/                      
-`}
-      </pre>
+    <div className="bg-black text-[#87FF5F] text-sm h-screen overflow-y-auto">
+      <pre className="text-white mb-4">{Logo}</pre>
       {output.map((line, index) => (
         <div
           key={index}
