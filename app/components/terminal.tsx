@@ -33,7 +33,10 @@ const Terminal: React.FC = () => {
         </div>
       ))}
       <form onSubmit={handleSubmit} className="flex mt-4 items-center">
-        <span className="mr-2">guest:cnvctn ~ $</span>
+        <span className="mr-2">
+          hacker<span className="text-[#AFAFFF]">:cnvctn</span>{" "}
+          <span className="text-[#FF5F00]">~</span> $
+        </span>
         <div className="relative flex-grow">
           <input
             ref={inputRef}
