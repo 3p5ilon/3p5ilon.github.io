@@ -22,8 +22,8 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-[#87FF5F] text-sm overflow-y-auto">
-      <pre className="text-white mb-5">{Logo}</pre>
+    <div className="bg-black text-[#87FF5F] overflow-y-auto text-[15px]">
+      <pre className="text-white mb-5 text-sm">{Logo}</pre>
       {output.map((line, index) => (
         <div
           key={index}
