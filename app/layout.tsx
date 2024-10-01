@@ -7,13 +7,13 @@ export const metadata: Metadata = {
     default: "HackSpace",
     template: `%s | HackSpace`,
   },
-  description: "Open Science AI Research Lab",
+  description: "A place where teens built cool shit!",
   openGraph: {
     images: "/opengraph.png",
     title: "HackSpace",
-    description: "Open Science AI Research Lab",
+    description: "A place where teens built cool shit!",
     url: "https://mithrilai.xyz",
-    siteName: "Mithril AI",
+    siteName: "HackSpace",
     locale: "en_US",
     type: "website",
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "MithrilAI",
+    title: "HackSpace",
     card: "summary_large_image",
   },
   icons: {
