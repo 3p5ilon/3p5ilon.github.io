@@ -27,10 +27,8 @@ const Terminal: React.FC = () => {
       {output.map((line, index) => (
         <div
           key={index}
-          className={line.startsWith("guest:cnvctn ~ $") ? "mt-4" : ""}
-        >
-          {line}
-        </div>
+          dangerouslySetInnerHTML={{ __html: line }} // Render HTML string
+        />
       ))}
       <form onSubmit={handleSubmit} className="flex mt-4 items-center">
         <span className="mr-2">

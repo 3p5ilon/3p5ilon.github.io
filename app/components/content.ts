@@ -8,34 +8,49 @@ export const Logo = `
 `;
 
 export const Description = [
-  "A place where teens built cool shit!",
-  "Type help to get started.",
+  `A place where teens built cool shit!`,
+  `Type <span class="text-[#AFAFFF]">help</span> to get started.`,
 ];
 
-export const Commands = (cmd: string, setOutput: React.Dispatch<React.SetStateAction<string[]>>): void => {
-  setOutput((prev) => [...prev, `guest:cnvctn ~ $ ${cmd}`]);
+export const Commands = (
+  cmd: string,
+  setOutput: React.Dispatch<React.SetStateAction<string[]>>
+): void => {
+  const commandOutput = `<div class="mt-4">hacker<span class="text-[#AFAFFF]">:cnvctn</span> <span class="text-[#FF5F00]">~</span> $ ${cmd}</div>`;
+  setOutput((prev) => [...prev, commandOutput]);
+
   switch (cmd.toLowerCase()) {
     case "help":
       setOutput((prev) => [
         ...prev,
-        "help             list all commands (you're looking at it)",
-        "about            learn about Conviction",
-        "clear            clear the terminal",
+        `<div class="flex"><span class="text-white w-40">about</span> <span class="text-[#AFAFFF]">learn about Conviction</span></div>`,
+        `<div class="flex"><span class="text-white w-40">social</span> <span class="text-[#AFAFFF]">social networks</span></div>`,
+        `<div class="flex"><span class="text-white w-40">clear</span> <span class="text-[#AFAFFF]">clear the terminal</span></div>`,
       ]);
       break;
     case "about":
       setOutput((prev) => [
         ...prev,
-        "We are an open-source AI research and deployment company.",
-        "Our mission is to democratize AI by becoming the Linux of AI,",
-        "making everything—from model weights to data pipelines—fully",
-        "open and accessible to everyone.",
+        `<span class="text-[#AFAFFF]">A place where teens built cool shit!</span>`,
+      ]);
+      break;
+    case "social":
+      setOutput((prev) => [
+        ...prev,
+        `<div class="flex"><span class="text-white w-40">twitter</span> <span class="text-[#AFAFFF]"><a href="https://x.com/_hackspace" target="blank">twitter account</a></span></div>`,
+        `<div class="flex"><span class="text-white w-40">discord</span> <span class="text-[#AFAFFF]"><a href="https://x.com/_hackspace" target="blank">hackspace community</a></span></div>`,
+        `<div class="flex"><span class="text-white w-40">github</span> <span class="text-[#AFAFFF]"><a href="https://x.com/_hackspace" target="blank">github profile</a></span></div>`,
+        `<div class="flex"><span class="text-white w-40">instagram</span> <span class="text-[#AFAFFF]"><a href="https://x.com/_hackspace" target="blank">instagram account</a></span></div>`,
+        `<div class="flex"><span class="text-white w-40">youtube</span> <span class="text-[#AFAFFF]"><a href="https://x.com/_hackspace" target="blank">youtube channel</a></span></div>`,
       ]);
       break;
     case "clear":
       setOutput([]);
       break;
     default:
-      setOutput((prev) => [...prev, `Command not found: ${cmd}`]);
+      setOutput((prev) => [
+        ...prev,
+        `Command not found: ${cmd}. Try <span class="text-[#FF5F00]">'help'</span> to get started.`,
+      ]);
   }
 };
