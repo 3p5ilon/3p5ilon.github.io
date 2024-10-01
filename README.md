@@ -1,6 +1,6 @@
-# Mithril AI
+# HackSpace
 
-Open models across diverse domains, for everyone, everywhere.
+A place where teens built cool shit!
 
 ## Installation
 
