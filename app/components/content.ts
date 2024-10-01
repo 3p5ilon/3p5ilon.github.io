@@ -12,7 +12,7 @@ export const Description = [
   "Type help to get started.",
 ];
 
-export const processCommand = (cmd: string, setOutput: React.Dispatch<React.SetStateAction<string[]>>): void => {
+export const Commands = (cmd: string, setOutput: React.Dispatch<React.SetStateAction<string[]>>): void => {
   setOutput((prev) => [...prev, `guest:cnvctn ~ $ ${cmd}`]);
   switch (cmd.toLowerCase()) {
     case "help":

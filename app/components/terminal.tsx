@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Logo, Description, processCommand } from "./content";
+import { Logo, Description, Commands } from "./content";
 
 const Terminal: React.FC = () => {
   const [input, setInput] = useState<string>("");
@@ -17,13 +17,13 @@ const Terminal: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    processCommand(input, setOutput);
+    Commands(input, setOutput);
     setInput("");
   };
 
   return (
-    <div className="bg-black text-[#87FF5F] text-sm h-screen overflow-y-auto">
-      <pre className="text-white mb-4">{Logo}</pre>
+    <div className="bg-black text-[#87FF5F] text-sm overflow-y-auto">
+      <pre className="text-white mb-5">{Logo}</pre>
       {output.map((line, index) => (
         <div
           key={index}

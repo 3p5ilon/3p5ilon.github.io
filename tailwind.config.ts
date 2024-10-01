@@ -8,9 +8,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        mono: ['JetBrains Mono', 'monospace'],
-      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

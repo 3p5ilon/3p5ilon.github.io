@@ -44,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative">{children}</body>
+      <body className="relative px-8 py-2">{children}</body>
     </html>
   );
 }
