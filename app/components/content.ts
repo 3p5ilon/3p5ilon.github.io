@@ -9,7 +9,7 @@ export const Logo = `
 
 export const Description = [
   `A place where teens built cool shit!`,
-  `Type <span class="text-[#AFAFFF]">help</span> to get started.`,
+  `Type <span class="text-[#5FAFFF]">help</span> to get started.`,
 ];
 
 export const Commands = (
