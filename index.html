@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="shortcut icon" href="/favicon.png">
+      <link rel="shortcut icon" href="images/favicon.ico">
       <title>Ɛpsilon</title>
       <link rel="canonical" href="https://3p5ilon.github.io"/>
       <meta property="og:site_name" content="Ɛpsilon"/>
@@ -71,7 +71,11 @@
       <div id="files-all" style="display: none;""></div>
       <div id="terminal"></div>
       <script>
-        var term = new Terminal({cursorBlink: true});
+        var term = new Terminal({
+          cursorBlink: true,
+          fontFamily: 'monospace',
+          // fontSize: 15,
+        });
         const fitAddon = new FitAddon.FitAddon();
         const webLinksAddon = new WebLinksAddon.WebLinksAddon();
 
