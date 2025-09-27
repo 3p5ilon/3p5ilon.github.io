@@ -9,13 +9,18 @@
     "xterm-addon-fit": "^0.5.0",
     "xterm-addon-web-links": "^0.4.0"
   },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:3p5lion/epsilon.github.io.git"
+    "url": "git@github.com:3p5lion/3p5ilon.github.io.git"
   },
   "scripts": {
-    "build": "npm install && mkdir -p ./css && cp node_modules/xterm/css/*.css ./css && mkdir -p ./js && cp node_modules/xterm*/lib/*.js* ./js && cp node_modules/aalib.js/dist/aalib.js* ./js",
-    "start": "netlify dev"
+    "build": "mkdir -p ./css && cp node_modules/xterm/css/*.css ./css && mkdir -p ./js && cp node_modules/xterm*/lib/*.js* ./js && cp node_modules/aalib.js/dist/aalib.js* ./js",
+    "start": "netlify dev",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
