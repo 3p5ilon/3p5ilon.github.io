@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background-color: #2c2c2c;
+  background-color: #000000;
   font-family: "monospace";
   margin: 0;
 }
@@ -20,7 +20,7 @@ body {
 }
 
 :root {
-  --brand-bg-color: #2c2c2c;
+  --brand-bg-color: #000000;
   --brand-txt-color: #fff;
   --brand-link-color: #fff;
 }
