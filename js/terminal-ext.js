@@ -13,7 +13,7 @@ extend = (term) => {
   term._promptRawText = () =>
     `${term.user}${term.sep}${term.host} ${term.cwd} $`;
   term.deepLink = window.location.hash.replace("#", "").split("-").join(" ");
-  
+
   // Simple tab completion state
   term.tabIndex = 0;
   term.tabOptions = [];
@@ -178,12 +178,13 @@ extend = (term) => {
     preloadFiles();
     term.reset();
     term.printLogoType();
+    term.stylePrint("Welcome to the Epsilon terminal!");
     term.stylePrint(
-      "Welcome to the Epsilon web terminal!",
-    );
-    term.stylePrint(
-      `Type ${colorText("help", "command")} for available commands or ${colorText("exit", "command")} to return to GUI.`,
-      false,
+      `Type ${colorText("help", "command")} for commands, or ${colorText(
+        "exit",
+        "command"
+      )} to return to GUI.`,
+      false
     );
 
     term.user = user;

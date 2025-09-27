@@ -1,4 +1,4 @@
-function runRootTerminal(term) {
+function runTerminal(term) {
   if (term._initialized) {
     return;
   }
