@@ -1,5 +1,7 @@
 # Ɛpsilon CLI
-My person site CLI style website built with [xterm.j](https://xtermjs.org/) that works like a real terminal.
+My personal CLI style website, built with [xterm.js](https://xtermjs.org/) that behaves like a real terminal.
+
+— Inspired by [rootvc/cli-website](https://github.com/rootvc/cli-website)
 
 ## Basic Commands
   - help: list all commands
