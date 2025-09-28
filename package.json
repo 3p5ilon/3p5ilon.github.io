@@ -16,10 +16,11 @@
   },
   "scripts": {
     "start": "netlify dev",
-    "predeploy": "npm install && mkdir -p ./css && cp node_modules/xterm/css/*.css ./css && mkdir -p ./js && cp node_modules/xterm*/lib/*.js* ./js && cp node_modules/aalib.js/dist/aalib.js* ./js && npm install && npm run build",
+    "build": "mkdir -p build/css && cp node_modules/xterm/css/*.css build/css && mkdir -p build/js && cp node_modules/xterm*/lib/*.js* build/js && cp node_modules/aalib.js/dist/aalib.js* build/js && cp index.html build/",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^6.3.0"
   }
 }
