@@ -1,11 +1,13 @@
 const help = {
   "%help%": "list all commands (you're looking at it)",
-  "%whois%": "list all partners",
-  "%whois% [partner]": "learn about a partner",
-  "%whois% root": "learn about us",
-  "%email%": "reach out to us",
+  "%whois%": "who is epsilon",
+  // "%blog%": "sometimes i write",
+  // "%secret%": "find the password",
+  // "%projects%": "list of my projects",
+  "%profile%": "my profile image",
+  "%social% <platform>": "list all socials", 
+  "%email%": "do not email me",
   "%locate%": "physical address",
-  "%jobs%": "check out our job openings",
   "%test%": "do not use",
   "%other%": "try your fav commands (e.g. %ls%, %groups%, %su%)"
 };

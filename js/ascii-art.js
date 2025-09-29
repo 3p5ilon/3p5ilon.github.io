@@ -13,6 +13,7 @@ function preloadASCIIArt() {
   }
 
   _loadArt("profile", 1.0, term.cols >= 60 ? 0.5 : 1.0, "png", false);
+  _loadArt("epsilon", 0.5, 1.0, "png", false);
   const people = Object.keys(team);
   for (p of people) {
     _loadArt(p, 1.0, term.cols >= 60 ? 0.5 : 1.0, "png", true);

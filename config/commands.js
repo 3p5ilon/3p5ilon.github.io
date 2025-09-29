@@ -1,4 +1,4 @@
-const whoisRoot = "Root Ventures is a San Francisco-based deep tech seed fund. As a team of engineers, we specialize in leading the first round of investments for technical founders.  Try %whois% and one of avidan, kane, chrissy, lee, ben, zodi, or laelah to learn more about our team.";
+const about = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book";
 const timeUnit = 1000; // useful for development, set to 10 to run faster, set to 1000 for production
 let killed = false;
 
@@ -22,34 +22,72 @@ const commands = {
     })
   },
 
-  whois: function(args) {
-    const name = args[0];
-    const people = Object.keys(team);
+  whois: function() {
+    term.stylePrint(about);
+  },
 
-    if (!name) {
-      term.stylePrint("%whois%: Learn about the firm, or a partner - usage:\r\n");
-      term.stylePrint("%whois% root");
-      for (p of people) {
-        term.stylePrint(`%whois% ${p}`);
-      }
-    } else if (name == "root") {
-      const description = whoisRoot;
-      term.printArt("profile");
-      term.stylePrint(description);
-    } else if (Object.keys(team).includes(name)) {
-      const person = team[name];
-      term.printArt(name);
-      term.stylePrint(`\r\n${person["name"]}, ${person["title"]} - ${name}@root.vc`);
-      term.stylePrint(`${person["linkedin"]}\r\n`);
-      term.stylePrint(person["description"]);
+  social: function(args) {
+    const platforms = Object.keys(social);
+  
+    if (!args[0]) {
+      term.stylePrint("Usage: social <platform>\n");
+      term.stylePrint("Available platforms:\n");
+  
+      // Calculate max length of names for alignment
+      const maxNameLength = Math.max(...platforms.map(p => social[p].name.length));
+  
+      Object.entries(social).forEach(([key, value]) => {
+        const name = value.name;
+        const desc = value.desc || "";
+  
+        if (term.cols >= 80) {
+          // Pad the name so descriptions align nicely
+          const rightPad = maxNameLength - name.length + 2;
+          const sep = " ".repeat(rightPad);
+          term.stylePrint(`${name}${sep}${desc}`);
+        } else {
+          // On small terminals, print name and desc on separate lines
+          if (key != platforms[0]) term.writeln("");
+          term.stylePrint(name);
+          term.stylePrint(desc);
+        }
+      });
     } else {
-      term.stylePrint(`User ${name || ''} not found. Try:\r\n`);
-      term.stylePrint("%whois% root");
-      for (p of people) {
-        term.stylePrint(`%whois% ${p}`);
+      const platform = args[0].toLowerCase();
+      if (social[platform]) {
+        term.stylePrint(social[platform].link);
+      } else {
+        term.stylePrint(`social: ${platform}: platform not found\n`);
+        term.stylePrint("Available platforms:\n");
+  
+        const maxNameLength = Math.max(...platforms.map(p => social[p].name.length));
+        Object.entries(social).forEach(([key, value]) => {
+          const name = value.name;
+          const desc = value.desc || "";
+  
+          if (term.cols >= 80) {
+            const rightPad = maxNameLength - name.length + 2;
+            const sep = " ".repeat(rightPad);
+            term.stylePrint(`${name}${sep}${desc}`);
+          } else {
+            if (key != platforms[0]) term.writeln("");
+            term.stylePrint(name);
+            term.stylePrint(desc);
+          }
+        });
       }
     }
   },
+  
+  
+  
+  profile: function() {
+    term.printArt("profile");
+  }, 
+  
+  banner: function() {
+    term.printArt("epsilon");
+  },  
 
   test: function() {
     term.openURL("https://i.imgur.com/Q2Unw.gif");
@@ -314,6 +352,8 @@ const commands = {
 
   locate: function() {
     term.stylePrint("Dimension C-137");
+    term.stylePrint("42.42° N");
+    term.stylePrint("69.69° W");
   },
 
   history: function() {
@@ -495,5 +535,5 @@ for (kv of Object.entries(portfolio)) {
 }
 
 function _filesHere() {
-  return _DIRS[term.cwd].filter((e) => e != 'README.md' || term.user == "root");
+  return _DIRS[term.cwd].filter((e) => e != 'README.md' || term.user == "epsilon");
 }
