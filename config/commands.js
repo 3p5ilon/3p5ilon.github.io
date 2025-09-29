@@ -34,7 +34,7 @@ const commands = {
       }
     } else if (name == "root") {
       const description = whoisRoot;
-      term.printArt("rootvc-square");
+      term.printArt("profile");
       term.stylePrint(description);
     } else if (Object.keys(team).includes(name)) {
       const person = team[name];
