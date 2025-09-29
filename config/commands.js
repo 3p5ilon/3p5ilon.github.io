@@ -51,69 +51,12 @@ const commands = {
     }
   },
 
-  tldr: function(args) {
-    const name = (args[0] || "");
-    if (!name) {
-      const companies = Object.keys(portfolio);
-      term.stylePrint("%tldr%: Learn about a portfolio company - usage:\r\n");
-      for (c of companies.sort()) {
-        const data = portfolio[c];
-        const tabs = c.length > 10 ? "\t" : "\t\t";
-        const sep = term.cols >= 76 ? tabs : "\r\n";
-        term.stylePrint(`%tldr% ${c}${sep}${data["url"]}`);
-        if (term.cols < 76 && c != companies[companies.length - 1]) {
-          term.writeln("");
-        }
-      }
-    } else if (!portfolio[name]) {
-      term.stylePrint(`Portfolio company ${name} not found. Should we talk to them? Email us: hello@root.vc`);
-    } else {
-      const company = portfolio[name];
-      term.cols >= 60 ? term.printArt(name) : term.writeln("");
-      term.stylePrint(company["name"]);
-      term.stylePrint(company["url"]);
-      if (company["memo"]) {
-        term.stylePrint(`Investment Memo: ${company["memo"]}`);
-      }
-      term.stylePrint("");
-      term.stylePrint(company["description"]);
-      if (company["demo"]) {
-        term.stylePrint(`Try it with command: %${name}%`);
-      }
-    }
-  },
-
-  git: function() {
-    term.displayURL("https://github.com/rootvc/cli-website");
-  },
-
-  agm: function() {
-    term.openURL("http://annualmeeting.root.vc");
-  },
-
   test: function() {
     term.openURL("https://i.imgur.com/Q2Unw.gif");
   },
 
   email: function() {
     term.command("pine");
-  },
-
-  github: function() {
-    term.displayURL("https://github.com/rootvc");
-  },
-
-  twitter: function() {
-    term.displayURL("https://twitter.com/rootvc");
-    term.displayURL("https://twitter.com/machinepix");
-  },
-
-  instagram: function() {
-    term.displayURL("https://instagram.com/machinepix/");
-  },
-
-  insta: function() {
-    term.command("instagram");
   },
 
   other: function() {
@@ -138,8 +81,7 @@ const commands = {
     term.stylePrint(_filesHere().join("   "));
   },
 
-  // I am so, so sorry for this code.
-  cd: function(args) {
+  cd: function (args) {
     let dir = args[0] || "~";
     if (dir != "/") {
       // strip trailing slash
@@ -167,52 +109,13 @@ const commands = {
         if (term.cwd == "/") {
           term.command("cd /home");
         } else {
-          term.stylePrint(`You do not have permission to access this directory`);
+          term.stylePrint(
+            `You do not have permission to access this directory`
+          );
         }
         break;
       case "/home":
         term.cwd = "home";
-        break;
-      case "guest":
-      case "root":
-        if (term.cwd == "home") {
-          if (term.user == dir) {
-            term.command("cd ~");
-          } else {
-            term.stylePrint(`You do not have permission to access this directory`);
-          }
-        } else {
-          term.stylePrint(`No such directory: ${dir}`);
-        }
-        break;
-      case "../home/avidan":
-      case "../home/kane":
-      case "../home/chrissy":
-      case "../home/lee":
-      case "../home/zodi":
-      case "../home/ben":
-      case "../home/laelah":
-        if (term.cwd == "~" || term.cwd == "bin") {
-          term.command(`cd ${dir.split("/")[2]}`);
-        } else {
-          term.stylePrint(`No such directory: ${dir}`);
-        }
-        break;
-      case "/home/avidan":
-      case "/home/kane":
-      case "/home/chrissy":
-      case "/home/lee":
-      case "/home/zodi":
-      case "/home/ben":
-      case "/home/laelah":
-      case "avidan":
-      case "kane":
-      case "chrissy":
-      case "lee":
-      case "zodi":
-      case "ben":
-      case "laelah":
-        term.stylePrint(`You do not have permission to access this directory`);
         break;
       case "/bin":
         term.cwd = "bin";
@@ -274,70 +177,28 @@ const commands = {
     }
   },
 
-  finger: function(args) {
-    const user = args[0];
-
-    switch (user) {
-      case 'guest':
-        term.stylePrint("Login: guest            Name: Guest");
-        term.stylePrint("Directory: /home/guest  Shell: /bin/zsh");
-        break;
-      case 'root':
-        term.stylePrint("Login: root             Name: That's Us!");
-        term.stylePrint("Directory: /home/root   Shell: /bin/zsh");
-        break;
-      case 'avidan':
-      case 'kane':
-      case 'chrissy':
-      case 'lee':
-      case 'zodi':
-      case 'ben':
-      case 'laelah':
-        term.stylePrint(`Login: ${user}   Name: ${team[user]["name"]}`);
-        term.stylePrint(`Directory: /home/${user}   Shell: /bin/zsh`);
-        break;
-      default:
-        term.stylePrint(user ? `%finger%: ${user}: no such user` : "usage: %finger% [user]");
-        break;
-    }
-  },
-
   groups: function(args) {
     const user = args[0];
-
+  
     switch (user) {
       case 'guest':
-        term.stylePrint("guest lps founders engineers investors");
+        term.stylePrint("guest: probably asking ChatGPT for life advice");
         break;
-      case 'root':
-        term.stylePrint("wheel investors engineers deep tech firms");
+      case 'epsilon':
+        term.stylePrint("epsilon: loves reading, building, and breaking things just for fun");
         break;
-      case 'avidan':
-        term.stylePrint("wheel investors engineers managingpartner handypersons tinkers agtech foodtech foodies coffeesnobs");
-        break;
-      case 'kane':
-        term.stylePrint("wheel investors engineers partners tinkerers cad motorcyclists gearheads machinepix sportshooters gamers");
-        break;
-      case 'chrissy':
-        term.stylePrint("wheel investors engineers partners electrical manufacturing ecad wearables healthtech gearheads automotive sportshooters");
-        break;
-      case 'lee':
-        term.stylePrint("wheel investors engineers partners software devtools data ai+ml gamers winesnobs");
-        break;
-      case 'zodi':
-        term.stylePrint("wheel investors engineers investors ai+ml simulation terraforming maine");
-        break;
-      case 'ben':
-        term.stylePrint("wheel operations photography ironman racecars canyoneering");
-        break;
-      case 'laelah':
-        term.stylePrint("wheel admin operations miracleworkers gamers");
+      case 'anon':
+        term.stylePrint("anon: midnight coder, meme lord, occasionally lets Claude handle the boring stuff");
         break;
       default:
-        term.stylePrint(user ? `%groups%: ${user}: no such user` : "usage: %groups% [user]");
+        if (user) {
+          term.stylePrint(`%groups%: ${user}: does not exist… probably lost in the system`);
+        } else {
+          term.stylePrint("usage: %groups% [user] — see what your hacker crew is up to");
+        }
         break;
     }
-  },
+  },  
 
   gzip: function() {
     term.stylePrint("What are you going to do with a zip file on a fake terminal, seriously?");
@@ -368,7 +229,7 @@ const commands = {
     } else if (args[0].split(".")[1] == "htm") {
       term.openURL(`./${args[0]}`, false);
     } else if (args.join(" ") == "the pod bay doors") {
-      term.stylePrint("I'm sorry Dave, I'm afraid I can't do that.");
+      term.stylePrint("I'm sorry anon, I'm afraid I can't do that.");
     } else {
       term.command(`cat ${args.join(" ")}`);
     }
@@ -399,11 +260,11 @@ const commands = {
   },
 
   pine: function() {
-    term.openURL("mailto:hello@root.vc");
+    term.openURL("mailto:hi3psilon@gmail.com");
   },
 
   curl: function(args) {
-    term.stylePrint(`Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource ${args[0]}. Use a real terminal.`);
+    term.stylePrint(`Access denied: ${args[0]} is off-limits. Try a real terminal.`);
   },
 
   ftp: function(args) {
@@ -419,31 +280,31 @@ const commands = {
   },
 
   scp: function(args) {
-    term.stylePrint(`████████████ Request Blocked: The ███████████ Policy disallows reading the ██████ resource ${args[0]}.`);
+    term.stylePrint(`Copy blocked: Can't steal ${args[0]} from the internet.`);
   },
 
   rm: function() {
-    term.stylePrint("I'm sorry Dave, I'm afraid I can't do that.");
+    term.stylePrint("I'm sorry, can't do that. Files have feelings too.");
   },
 
   mkdir: function() {
-    term.stylePrint("Come on, don't mess with our immaculate file system.");
+    term.stylePrint("Nice try, but this place is already perfectly organized.");
   },
 
   alias: function() {
-    term.stylePrint("Just call me HAL.");
+    term.stylePrint("Just call me Epsilon.");
   },
 
   df: function() {
-    term.stylePrint("Nice try. Just get a Dropbox.");
+    term.stylePrint("Disk full? Nah, I live in the cloud.");
   },
 
   kill: function(args) {
     if (args && args.slice(-1) == 337) {
       killed = true;
-      term.stylePrint("Root Ventures crypto miner disabled.");
+      term.stylePrint("Epsilon miner disabled. Crypto is safe… for now.");
     } else {
-      term.stylePrint("You can't kill me!");
+      term.stylePrint("You can't kill me. I run on caffeine.");
     }
   },
 
@@ -452,9 +313,7 @@ const commands = {
   },
 
   locate: function() {
-    term.stylePrint("Root Ventures");
-    term.stylePrint("2670 Harrison St");
-    term.stylePrint("San Francisco, CA 94110");
+    term.stylePrint("Dimension C-137");
   },
 
   history: function() {
@@ -509,7 +368,7 @@ const commands = {
   },
 
   sudo: function(args) {
-    if (term.user == "root") {
+    if (term.user == "epsilon") {
       term.command(args.join(" "));
     }
     else {
@@ -518,9 +377,9 @@ const commands = {
   },
 
   su: function(args) {
-    user = args[0] || "root";
+    user = args[0] || "epsilon";
 
-    if (user == "root" || user == "guest") {
+    if (user == "epsilon" || user == "guest") {
       term.user = user;
       term.command("cd ~");
     } else {
@@ -569,13 +428,13 @@ const commands = {
   uname: function(args) {
     switch (args[0]) {
       case "-a":
-        term.stylePrint("RootPC rootpc 0.0.1 RootPC Kernel Version 0.0.1 root:xnu-31415.926.5~3/RELEASE_X86_64 x86_64");
+        term.stylePrint("EpsilonPC epsilon 1.0.0 Epsilon Kernel Version 1.0.0 root:xnu-31415.926.5~3/RELEASE_X86_64 x86_64");
         break;
       case "-mrs":
-        term.stylePrint("RootPC 0.0.1 x86_64");
+        term.stylePrint("EpsilonPC 1.0.0 x86_64");
         break;
       default:
-        term.stylePrint("RootPC");
+        term.stylePrint("EpsilonPC");
     }
   },
 
@@ -584,27 +443,14 @@ const commands = {
   },
 
   exit: function() {
-    term.command("open welcome.htm");
-  },
+    term.stylePrint("Exiting terminal… launching GUI!");
+    setTimeout(() => {
+      window.open("https://3p5ilon.vercel.app/", "_blank"); 
+    }, 1000); 
+  },  
 
   clear: function() {
     term.init();
-  },
-
-  zed: function() {
-    term.stylePrint("Coming soon! ;)");
-  },
-
-  ge: function() {
-    term.command("great_expectations");
-  },
-
-  great_expectations: function() {
-    term.command("superconductive");
-  },
-
-  privacy: function() {
-    term.command("privacy_dynamics");
   },
 
   eval: function(args) {
@@ -612,42 +458,29 @@ const commands = {
   },
 
   jobs: function() {
-    term.stylePrint(`[1]   Running                 investor &`);
-    term.stylePrint("\r\nUse %fg% [id] to see details of a job.")
-    term.stylePrint("Yes, we know that's not exactly how %jobs% works in Unix, but close enough.");
+    term.stylePrint("[1] Running   bitcoin_miner.js &");
+    term.stylePrint("[2] Sleeping  coffee_fetcher.service &");
+    term.stylePrint("[3] Stopped   bug_fixer.txt &");
+    term.stylePrint("Use %fg% [id] to bring a job to the front.");
   },
-
+  
   bg: function(args) {
-    term.stylePrint(`Sorry. If you want to background one of these jobs, you'll need to help us fill it. Try %fg% ${args} instead.`);
+    term.stylePrint(`Job ${args} sent to background… hope it doesn’t crash your browser tabs.`);
   },
-
+  
   fg: function(args) {
-    const job = jobs[args];
-
-    if (job) {
-      job.map(line => term.stylePrint(line));
-      term.stylePrint(`\r\n%apply% ${args} to apply!`);
-    } else {
-      term.stylePrint(`job id ${args} not found.`);
-    }
+    const fakeJobs = {
+      1: ["Resuming bitcoin_miner.js… mining some virtual coins!"],
+      2: ["Resuming coffee_fetcher.service… caffeine incoming!"],
+      3: ["Resuming bug_fixer.txt… pray the bug survives."]
+    };
+    const job = fakeJobs[args];
+    if (job) job.forEach(line => term.stylePrint(line));
+    else term.stylePrint(`Job id ${args} not found. Use %jobs%`);
   },
-
-  apply: function(args) {
-    if (args == 1) {
-      term.stylePrint("If you think you'd enjoy working here, apply by hitting the following endpoint:");
-      term.stylePrint("\r\nhttps://hooks.attio.com/w/1d456d59-a7ac-4211-ac1d-fac612f7f491/5fc14931-0124-4121-b281-1dbfb64dceb2\r\n");
-      term.stylePrint(`with a ${colorText("POST", "command")} request containing a json object with 4 keys (use a real terminal):`);
-      term.stylePrint(`\r\n{`);
-      term.stylePrint(`\t${colorText("name", "command")}: [your name]`);
-      term.stylePrint(`\t${colorText("email", "command")}: [your email]`);
-      term.stylePrint(`\t${colorText("linkedin", "command")}: [your linkedin profile url]`);
-      term.stylePrint(`\t${colorText("notes", "command")}: [(optional) anything else you'd like to share?]`);
-      term.stylePrint(`}`);
-    } else if (!args || args == "") {
-      term.stylePrint("Please provide a job id. Use %jobs% to list all current jobs.");
-    } else {
-      term.stylePrint(`Job id ${args[0]} not found. Use %jobs% to list all current jobs.`)
-    }
+  
+  apply: function() {
+    term.stylePrint("Applications closed — but you can always contribute to open-source!");
   }
 }
 
