@@ -1,8 +1,8 @@
 const help = {
   "%help%": "list all commands (you're looking at it)",
   "%whois%": "who is epsilon",
-  "%blog%": "sometimes i write",
   "%projects% <project>": "list my projects",
+  "%blog%": "sometimes i write",
   "%profile%": "show ascii profile",
   "%social% <network>": "list all socials",
   "%email%": "do not email me",

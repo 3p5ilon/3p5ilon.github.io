@@ -7,17 +7,9 @@ const LOGO_TYPE = `    ______           _ __
 `.replace(/\n/g, "\r\n");
 
 function preloadASCIIArt() {
-  const companies = Object.keys(portfolio);
-  for (c of companies) {
-    _loadArt(c, 0.5, 1.0, "jpg", false);
-  }
-
+  // Load only static, local assets (no external config dependencies)
   _loadArt("profile", 1.0, term.cols >= 60 ? 0.5 : 1.0, "png", false);
   _loadArt("epsilon", 0.5, 1.0, "png", false);
-  const people = Object.keys(team);
-  for (p of people) {
-    _loadArt(p, 1.0, term.cols >= 60 ? 0.5 : 1.0, "png", true);
-  }
 }
 
 // TODO: Here is where we should insert alternatives to ASCII as text

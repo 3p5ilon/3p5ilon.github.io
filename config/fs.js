@@ -14,7 +14,7 @@ const _FILES = {
 const _DIRS = {
   "~": ["id_rsa", "README.md"],
   "bin": ["zsh"],
-  "home": Object.keys(team).concat("guest", "epsilon").sort(),
+  "home": ["guest", "epsilon"],
   "/": ["bin", "home"],
 };
 

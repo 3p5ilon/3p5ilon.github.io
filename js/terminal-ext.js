@@ -153,7 +153,7 @@ extend = (term) => {
     const args = parts.slice(1, parts.length);
     const fn = commands[cmd];
     if (typeof fn === "undefined") {
-      term.stylePrint(`Command not found: ${cmd}. Try 'help' to get started.`);
+      term.stylePrint(`Command not found: ${cmd}. Try %help% to get started.`);
     } else {
       return fn(args);
     }

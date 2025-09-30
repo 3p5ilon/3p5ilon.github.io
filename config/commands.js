@@ -15,7 +15,6 @@ const commands = {
         term.stylePrint(`${cmd}${sep}${desc}`);
       } else {
         if (cmd != "help") {
-          // skip second leading newline
           term.writeln("");
         }
         term.stylePrint(cmd);
@@ -144,7 +143,7 @@ const commands = {
   },
 
   blog: function () {
-    term.stylePrint("sometimes i write stuff, read it here");
+    term.stylePrint("sometimes i write stuff, read it here:");
     term.stylePrint("https://3p5ilon.vercel.app/blog");
   },
 
@@ -197,7 +196,6 @@ const commands = {
   cd: function (args) {
     let dir = args[0] || "~";
     if (dir != "/") {
-      // strip trailing slash
       dir = dir.replace(/\/$/, "");
     }
 
@@ -354,7 +352,7 @@ const commands = {
     } else if (args[0].split(".")[1] == "htm") {
       term.openURL(`./${args[0]}`, false);
     } else if (args.join(" ") == "the pod bay doors") {
-      term.stylePrint("I'm sorry anon, I'm afraid I can't do that.");
+      term.stylePrint("HAL9000: I'm sorry anon, I'm afraid I can't do that...\n");
     } else {
       term.command(`cat ${args.join(" ")}`);
     }
@@ -595,33 +593,12 @@ const commands = {
     );
   },
 
-  fg: function (args) {
-    const fakeJobs = {
-      1: ["Resuming bitcoin_miner.js... mining some virtual coins!"],
-      2: ["Resuming coffee_fetcher.service... caffeine incoming!"],
-      3: ["Resuming bug_fixer.txt... pray the bug survives."],
-    };
-    const job = fakeJobs[args];
-    if (job) job.forEach((line) => term.stylePrint(line));
-    else term.stylePrint(`Job id ${args} not found. Use %jobs%`);
-  },
-
   apply: function () {
     term.stylePrint(
       "Applications closed — but you can always contribute to open-source!"
     );
   },
 };
-
-// Add commands for company demos
-for (kv of Object.entries(portfolio)) {
-  const key = kv[0];
-  const val = kv[1];
-
-  if (val["demo"]) {
-    commands[key] = () => term.displayURL(val["demo"]);
-  }
-}
 
 function _filesHere() {
   return _DIRS[term.cwd].filter(

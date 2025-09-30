@@ -130,12 +130,12 @@ function runTerminal(term) {
                 term.tabOptions = Object.keys(commands).filter(c => c.startsWith(tabCmd)).sort();
               } else if (["cat", "tail", "less", "head", "open", "mv", "cp", "chown", "chmod", "ls"].includes(tabCmd)) {
                 term.tabOptions = _filesHere().filter(f => f.startsWith(tabRest)).sort();
-              } else if (["whois", "finger", "groups"].includes(tabCmd)) {
-                term.tabOptions = Object.keys(team).filter(f => f.startsWith(tabRest)).sort();
-              } else if (["man", "woman", "tldr"].includes(tabCmd)) {
-                term.tabOptions = Object.keys(portfolio).filter(f => f.startsWith(tabRest)).sort();
               } else if (["cd"].includes(tabCmd)) {
                 term.tabOptions = _filesHere().filter(dir => dir.startsWith(tabRest) && !_DIRS[term.cwd].includes(dir)).sort();
+              } else if (["social"].includes(tabCmd)) {
+                term.tabOptions = Object.keys(social).filter(n => n.startsWith(tabRest)).sort();
+              } else if (["projects"].includes(tabCmd)) {
+                term.tabOptions = Object.keys(projects).filter(p => p.startsWith(tabRest)).sort();
               }
             }
             
