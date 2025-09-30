@@ -153,19 +153,17 @@ const commands = {
   },
 
   banner: function () {
-    term.writeln(""); 
+    term.writeln("");
     if (term.printLogoType) {
       term.printLogoType();
     } else {
       term.writeln(term.cols >= 40 ? LOGO_TYPE : "[Epsilon CLI]\r\n");
     }
   },
-  
-  
 
   secret: function () {
-    term.stylePrint("shh... you found a secret 🕵️");
-    term.openURL("https://i.imgur.com/Q2Unw.gif");
+    term.stylePrint("shh... you found a secret");
+    term.openURL("https://users.ece.cmu.edu/~gamvrosi/thelastq.html");
   },
 
   email: function () {
@@ -263,7 +261,7 @@ const commands = {
       term.stylePrint(`No such file: ${filename}`);
     }
     if (filename == "id_rsa") {
-      term.openURL("https://i.imgur.com/Q2Unw.gif");
+      term.openURL("https://youtu.be/dQw4w9WgXcQ?si=v6gpumClZDQc87zn");
     }
   },
 
@@ -272,11 +270,11 @@ const commands = {
     const filename = args[1];
 
     if (filename == "id_rsa") {
-      term.openURL("https://i.imgur.com/Q2Unw.gif");
+      term.openURL("https://youtu.be/dQw4w9WgXcQ?si=v6gpumClZDQc87zn");
     }
 
     if (!q || !filename) {
-      term.stylePrint("usage: %grep% [pattern] [filename]");
+      term.stylePrint("usage: %grep% <pattern> <file>");
       return;
     }
 
@@ -352,7 +350,7 @@ const commands = {
       args[0].split(".")[0] == "test" &&
       args[0].split(".")[1] == "htm"
     ) {
-      term.openURL("https://i.imgur.com/Q2Unw.gif");
+      term.openURL("https://youtu.be/dQw4w9WgXcQ?si=v6gpumClZDQc87zn");
     } else if (args[0].split(".")[1] == "htm") {
       term.openURL(`./${args[0]}`, false);
     } else if (args.join(" ") == "the pod bay doors") {
