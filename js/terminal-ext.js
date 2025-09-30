@@ -1,5 +1,3 @@
-// TODO: make this a proper addon
-
 extend = (term) => {
   term.currentLine = "";
   term.user = "guest";
@@ -23,8 +21,8 @@ extend = (term) => {
     var text = term
       ._promptRawText()
       .replace(term.user, colorText(term.user, "user"))
-      .replace(term.sep, colorText(term.sep, ""))
-      .replace(term.host, colorText(term.host, ""))
+      .replace(term.sep, colorText(term.sep, "sep"))
+      .replace(term.host, colorText(term.host, "host"))
       .replace(term.cwd, colorText(term.cwd, "hyperlink"))
       .replace(term._promptChar, colorText(term._promptChar, "prompt"));
     return text;
